@@ -1,0 +1,20 @@
+{
+    "manifest_version": 3,
+    "name": "Colonist Map Filter",
+    "version": "1.0",
+    "description": "Filter Colonist.io lobby games by map name.",
+    "permissions": ["activeTab", "scripting"],
+    "host_permissions": ["https://colonist.io/*"],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": "icon.png"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://colonist.io/*"],
+        "js": ["content.js"],
+        "css": ["popup.css"]
+      }
+    ]
+  }
+  
