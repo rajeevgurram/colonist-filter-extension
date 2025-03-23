@@ -11,6 +11,12 @@ function isElementHasValue(element, values) {
     return element && values.includes(element.textContent.trim());
 }
 
+function isGameFull(element) {
+    const totalPlayers = element.querySelectorAll(".player_count")[0].childNodes.length;
+    const joinedPlayers = element.querySelectorAll(".player_count .tooltipmediumtext_left").length
+    return totalPlayers > joinedPlayers
+}
+
 function isGameAvailable(game) {
     if(!game.classList) {
         return true;
@@ -19,18 +25,27 @@ function isGameAvailable(game) {
     return !game.classList.contains('lobby_table_row_unavailable');
 }
 
+function isTabActive(element) {
+    return element.classList.contains("active");
+}
+
 function filterGamesByMap(mapNames) {
-    document.getElementById('header_navigation_lobby').click();
+    const lobbyElement = document.getElementById('header_navigation_lobby');
+    if(!isTabActive(lobbyElement)) {
+        lobbyElement.click();
+    }
+
     interval = setInterval(() => {
         const games = document.querySelectorAll('#lobby_center_rooms_table_body>tr');
             games
-            .forEach((game) => {
+            .forEach((game) => {isGameFull(game);
                 const modeElement = game.querySelectorAll('td')[0];
                 const mapElement = game.querySelectorAll('td')[1];
                 if (isGameAvailable(game) &&                        // Not Kicked Out
                     isElementHasValue(modeElement, ['Base']) &&     // Base Game
-                    isElementHasValue(mapElement, mapNames)) {      // Selected Game
-                        game.style.display = 'inline-block';
+                    isElementHasValue(mapElement, mapNames) &&      // Selected Game
+                    isGameFull(game)) {                             // Game not full
+                        game.style.removeProperty('display');
                         game.click();
                         clearTimer();
                         setTimeout(() => {

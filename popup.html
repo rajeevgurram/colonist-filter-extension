@@ -5,22 +5,42 @@
   <style>
         html {
             width: 400px;
-            height: 170px;
+            height: 290px;
+            margin-left: 5px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
         }
   </style>
 </head>
 <body>
-  <h1>Filter by Map</h1>
-  <select id="mapName">
-    <option value="Gold Rush">Gold Rush</option>
-    <option value="Black Forest">Black Forest</option>
-    <option value="Volcano">Volcano</option>
-  </select>
-  <button id="filterButton">Filter</button>
-  <div>
-    <h3>Interest List: Gold Rush | Black Forest | Volcano</h3>
-  </div>
-  <button id="allInterested" style="color: green;margin-bottom: 10px;">Filter All Interested</button>
-  <script src="popup.js"></script>
+    <div class="header">
+        <img src="logo.png" width="150px" height="90px"></img>
+        <h1>Filter by Map</h1>
+    </div>
+
+    <br /><br />
+
+    <select id="mapName">
+        <option value="Gold Rush">Gold Rush</option>
+        <option value="Black Forest">Black Forest</option>
+        <option value="Volcano">Volcano</option>
+    </select>
+    <button id="filterButton">Filter and Join the Game</button>
+
+    <br /><br />
+
+    <div>
+        <h3>Interest List: Gold Rush | Black Forest | Volcano</h3>
+    </div>
+    <button id="allInterested" style="color: green;margin-bottom: 10px;">Filter All Interested</button>
+
+    <br />
+    <span>This extension created by Rajeev Gurram</span>
+    <script src="popup.js"></script>
 </body>
 </html>
